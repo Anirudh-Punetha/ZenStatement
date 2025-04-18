@@ -21,7 +21,7 @@ I have created 5 endpoints in my FastAPI file, which is api.py
 1. /api/v1/zen/health is the endpoint for healthcheck.
 2. /api/v1/zen/upload is used to upload files to local dir.
 3. /api/v1/zen/preprocess is used to fill nan values and only keep the “Not Found Sys B” category. It will also upload the csv in the end to S3 bucket.
-4. /api/v1/zen/resolve is used to resolve queries when you have uploaded the resolution file again from step1. It will create an openAI agent and classify the comment for each row as resolved or unresolved. If it is unresolved it will give the next steps as well. Each row is uploaded to S3 bucket based on resolution status. You can see the definition of agent and the prompt in api.py from line 60-80.
+4. /api/v1/zen/resolve is used to resolve queries when you have uploaded the resolution file again from upload api. It will create an openAI agent and classify the comment for each row as resolved or unresolved. If it is unresolved it will give the next steps as well. Each row is uploaded to S3 bucket based on resolution status. You can see the definition of agent and the prompt in api.py from line 60-80.
 5. /api/v1/zen/cluster is used to gather all the resolved comments and cluster it using DBSCAN. First all comments are converted to embeddings using sentence transformers and then fit using a DBSCAN model. The noise is removed and clustered records are uploaded to S3 bucket.
 
 ## Improvements
